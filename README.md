@@ -1,5 +1,5 @@
-## BulmaPlay - Made with Bulma CSS
-**Open Source** [App](https://appseed.us/apps/bulma-css/bulmaplay) - Read More about **[BulmaPlay](https://blog.appseed.us/bulmaplay-jamstack-app-built-with-bulma-css/)** 
+## [BulmaPlay](https://appseed.us/apps/bulma-css/bulmaplay) - Made with [Bulma CSS](https://bulma.io/)
+See the live [DEMO](https://bulma-css-bulmaplay.appseed.us/) or read the official [BulmaPlay documentation](https://docs.appseed.us/apps/bulma-css/bulmaplay/)
 
 ![BulmaPlay - Made with Bulma CSS | AppSeed](https://raw.githubusercontent.com/app-generator/static/master/bulmaplay/jamstack-bulmaplay-made-with-bulma-css.jpg)
 
