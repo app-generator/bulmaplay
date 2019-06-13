@@ -11,8 +11,8 @@
 - Blazing [fast](https://developers.google.com/speed/pagespeed/insights/?url=https://bulma-css-bulmaplay.appseed.us&tab=desktop) - **90 Lighthouse Score**
 
 ## How to use it
-- Clone this repo `git clone https://github.com/rosoftdeveloper/appseed/`
-- `cd jamstack/bulmaplay`
+- Clone this repo `git clone https://github.com/app-generator/bulmaplay.git`
+- `cd bulmaplay`
 - `yarn` - install deps
 - `yarn start` - live edit
 - `yarn build` - build for production in directory `_site`

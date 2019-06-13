@@ -61,14 +61,14 @@ gulp.task('copy', function() {
 //Theme Sass variables
 var sassOptions = {
     errLogToConsole: true,
-    outputStyle: 'compressed',
+    outputStyle: 'expanded',
     includePaths: [nodepath + 'bulma/sass']
 };
 
 //Theme Scss variables
 var scssOptions = {
     errLogToConsole: true,
-    outputStyle: 'compressed',
+    outputStyle: 'expanded',
     includePaths: ['./src/scss/partials']
 };
 
