@@ -1,0 +1,590 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Home {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <section class="hero is-fullheight is-default is-bold">
+    
+        <nav x-data="initNavbar()" class="navbar is-fresh is-transparent no-shadow" role="navigation"
+            aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="https://cssninja.io">
+                        <img src="/static/assets/img/logo/fresh-alt.svg" alt="" width="112" height="28">
+                    </a>
+        
+                    <a @click="openSidebar()" class="navbar-item is-hidden-desktop is-hidden-tablet">
+                        <div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                'open': $store.app.isSiderbarOpen,
+                                '': !$store.app.isSiderbarOpen
+                            }">
+                            <svg width="1000px" height="1000px">
+                                <path class="path1"
+                                    d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                                <path class="path2" d="M 300 500 L 700 500"></path>
+                                <path class="path3"
+                                    d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                            </svg>
+                            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+                        </div>
+                    </a>
+        
+                    <div class="navbar-burger" @click="openMobileMenu()">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle" :class="{
+                                    'active': mobileOpen,
+                                    '': !mobileOpen
+                                }">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                            </span>
+                    </div>
+                </div>
+        
+                <div id="navbar-menu" class="navbar-menu is-static" :class="{
+                        'is-active': mobileOpen,
+                        '': !mobileOpen
+                    }">
+        
+                    <div class="navbar-start">
+                        <a @click="openSidebar()" class="navbar-item is-hidden-mobile">
+                            <div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                    'open': $store.app.isSiderbarOpen,
+                                    '': !$store.app.isSiderbarOpen
+                                }">
+                                <svg width="1000px" height="1000px">
+                                    <path class="path1"
+                                        d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800">
+                                    </path>
+                                    <path class="path2" d="M 300 500 L 700 500"></path>
+                                    <path class="path3"
+                                        d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200">
+                                    </path>
+                                </svg>
+                                <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="navbar-end">
+                        <a  target="_blank" 
+                            href="https://appseed.us" class="navbar-item is-secondary">
+                            AppSeed
+                        </a>
+                        <a href="#" class="navbar-item modal-trigger" data-modal="auth-modal">
+                            <span class="button signup-button rounded secondary-btn raised">
+                                Sign IN
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav x-data="initNavbar()"  x-on:scroll.window="scroll()" id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation" :class="{
+                'is-active': scrolled,
+                '': !scrolled
+            }">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="https://cssninja.io">
+                        <img src="/static/assets/img/logo/fresh-alt.svg" alt="" width="112" height="28">
+                    </a>
+        
+                    <a @click="openSidebar()" class="navbar-item is-hidden-desktop is-hidden-tablet">
+                        <div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                'open': $store.app.isSiderbarOpen,
+                                '': !$store.app.isSiderbarOpen
+                            }">
+                            <svg width="1000px" height="1000px">
+                                <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                                <path class="path2" d="M 300 500 L 700 500"></path>
+                                <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                            </svg>
+                            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+                        </div>
+                    </a>
+        
+                    <div class="navbar-burger" @click="openMobileMenu()">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle" :class="{
+                                    'active': mobileOpen,
+                                    '': !mobileOpen
+                                }">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+        
+                <div id="cloned-navbar-menu" class="navbar-menu is-fixed" :class="{
+                        'is-active': mobileOpen,
+                        '': !mobileOpen
+                    }">
+        
+                    <div class="navbar-start">
+                        <a @click="openSidebar()" class="navbar-item is-hidden-mobile">
+                            <div id="cloned-menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                    'open': $store.app.isSiderbarOpen,
+                                    '': !$store.app.isSiderbarOpen
+                                }">
+                                <svg width="1000px" height="1000px">
+                                    <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                                    <path class="path2" d="M 300 500 L 700 500"></path>
+                                    <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                                </svg>
+                                <button id="cloned-menu-icon-trigger" class="menu-icon-trigger"></button>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="navbar-end">
+                        <a  target="_blank" 
+                            href="https://appseed.us.us" class="navbar-item is-secondary">
+                            AppSeed
+                        </a>
+                        <a href="#" class="navbar-item modal-trigger" data-modal="auth-modal">
+                            <span class="button signup-button rounded secondary-btn raised">
+                                Sign IN
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-5 is-offset-1 landing-caption">
+                        <h1 class="title is-1 is-bold is-spaced">
+                            Bulma Css Play
+                        </h1>
+                        <h2 class="subtitle is-5 is-muted">
+                            Open-Source one page starter styled with Bulma.
+                        </h2>
+                        <div class="button-wrap">
+                            <a 
+                               target="_blank" 
+                               href="https://appseed.us/apps/bulma-css/bulmaplay"
+                               class="button cta is-rounded primary-btn raised">
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column is-5">
+                        <figure class="image is-4by3">
+                            <img src="/static/assets/img/illustrations/worker.svg" alt="Bulma CSS - Fresh, open-source starter top image.">
+                        </figure>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    
+        <div class="hero-foot mb-20">
+            <div class="container">
+                <div class="tabs is-centered">
+                    <ul>
+                        <li><a><img class="partner-logo" src="/static/assets/img/logo/clients/systek.svg"></a></li>
+                        <li><a><img class="partner-logo" src="/static/assets/img/logo/clients/tribe.svg"></a></li>
+                        <li><a><img class="partner-logo" src="/static/assets/img/logo/clients/kromo.svg"></a></li>
+                        <li><a><img class="partner-logo" src="/static/assets/img/logo/clients/infinite.svg"></a></li>
+                        <li><a><img class="partner-logo" src="/static/assets/img/logo/clients/gutwork.svg"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-feature-grey is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Features</h2>
+                <h3 class="subtitle is-5 is-muted">
+                    A modern design for simple projects
+                </h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns">
+                    <div class="column is-one-third">
+                        <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                            <div class="card-title">
+                                <h4>Fully Responsive</h4>
+                            </div>
+                            <div class="card-icon">
+                                <img src="/static/assets/img/icons/light-bulb.svg">
+                            </div>
+                            <div class="card-text">
+                                <p>Built with Bulma, a mobile first framework</p>
+                            </div>
+                            <div class="card-action">
+                                <a target="_blank"
+                                   href="https://bulma.io/" class="button btn-align-md primary-btn raised">
+                                    Bulma.io
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                            <div class="card-title">
+                                <h4>Clean Code</h4>
+                            </div>
+                            <div class="card-icon">
+                                <img src="/static/assets/img/icons/web.svg">
+                            </div>
+                            <div class="card-text">
+                                <p>Well structured codebade, easy to understand.</p>
+                            </div>
+                            <div class="card-action">
+                                <a target="_blank"
+                                   href="https://bulma-css.com/" class="button btn-align-md primary-btn raised">
+                                    More products
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="column">
+                        <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                            <div class="card-title">
+                                <h4>Active Support</h4>
+                            </div>
+                            <div class="card-icon">
+                                <img src="/static/assets/img/icons/rocket.svg">
+                            </div>
+                            <div class="card-text">
+                                <p>Land on a bug? Let us know</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="https://bulma-css.com/" 
+                                   class="button btn-align-md primary-btn raised">Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Awesome Features</h2>
+                <h3 class="subtitle is-5 is-muted">To make you super happy</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-4 is-offset-2">
+                    <h3 class="title is-3 mb-10 is-title-reveal">Handcrafted UI</h3>
+                    <p class="subtitle is-5 is-muted">
+                        Fresh Landing Page comes with a nice component library based on Bulma. 
+                        Each component has been carefully handcrafted.
+                    </p>
+                </div>
+                <div class="column is-5">
+                    <img src="/static/assets/img/illustrations/features/feature-1.png" alt="">
+                </div>
+            </div>
+    
+            <div class="columns is-vcentered side-feature mt-60">
+                <div class="column is-5 is-offset-1">
+                    <img src="/static/assets/img/illustrations/features/feature-2.png" alt="">
+                </div>
+                <div class="column is-4 is-offset-1">
+                    <h3 class="title is-3 mb-10 is-title-reveal">Bulma Css</h3>
+                    <p class="subtitle is-5 is-muted">
+                        Bulma is a free, open source framework that provides ready-to-use frontend components that you can easily combine to build responsive web interfaces.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-feature-grey is-medium">
+        <div class="container">
+    
+            <div class="columns is-vcentered app-side">
+                <div class="column is-5 is-offset-1">
+                    <h3 class="title is-3 is-spaced is-title-reveal">An intuitive app</h3>
+                    <p class="subtitle is-5 is-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum audissem Antiochum, Brute, ut solebam, cum M. Quae diligentissime contra Aristonem dicuntur a Chryippo.</p>
+                </div>
+                <div class="column is-10">
+                    <div class="has-text-centered">
+                        <img class="pushed-image" src="/static/assets/img/illustrations/mockups/app-mockup.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Wait, there's more</h2>
+                <h3 class="subtitle is-5 is-muted">To make you super happy</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns is-multiline icon-list">
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-github" size="large"></ion-icon>
+                            </div>
+                            <h4>Github</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-bitbucket" size="large"></ion-icon>
+                            </div>
+                            <h4>Bitbucket</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-slack" size="large"></ion-icon>
+                            </div>
+                            <h4>Slack</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-npm" size="large"></ion-icon>
+                            </div>
+                            <h4>Npm</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-javascript" size="large"></ion-icon>
+                            </div>
+                            <h4>Javascript</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-nodejs" size="large"></ion-icon>
+                            </div>
+                            <h4>Nodejs</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-angular" size="large"></ion-icon>
+                            </div>
+                            <h4>Angular</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-google" size="large"></ion-icon>
+                            </div>
+                            <h4>Google</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-python" size="large"></ion-icon>
+                            </div>
+                            <h4>Python</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-wordpress" size="large"></ion-icon>
+                            </div>
+                            <h4>WordPress</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-android" size="large"></ion-icon>
+                            </div>
+                            <h4>Android</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="feature-icon has-text-centered">
+                            <div class="icon-wrap is-icon-reveal">
+                                <ion-icon name="logo-apple" size="large"></ion-icon>
+                            </div>
+                            <h4>Apple</h4>
+                            <p>Some feature text</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium  has-background-image" data-background="https://source.unsplash.com/g30P1zcOzXo/1600x900" data-color="#4FC1EA" data-color-opacity=".6">
+        <div class="overlay"></div>
+        <div class="container">
+    
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2 light-text is-spaced">Our clients love us</h2>
+                <h3 class="subtitle is-5 light-text">Look at what they say about us</h3>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns is-vcentered">
+                    <div class="column is-4">
+                        <figure class="testimonial">
+                            <blockquote>
+                                Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
+                            </blockquote>
+                            <div class="author">
+                                <img src="/static/assets/img/illustrations/faces/1.png" alt=""/>
+                                <h5>Irma Walters</h5><span>Accountant</span>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="column is-4">
+                        <figure class="testimonial">
+                            <blockquote>
+                                Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
+                            </blockquote>
+                            <div class="author">
+                                <img src="/static/assets/img/illustrations/faces/2.png" alt=""/>
+                                <h5>John Bradley</h5><span>Financial Analyst</span>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="column is-4">
+                        <figure class="testimonial">
+                            <blockquote>
+                                Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
+                            </blockquote>
+                            <div class="author">
+                                <img src="/static/assets/img/illustrations/faces/3.png" alt=""/>
+                                <h5>Gary Blackman</h5><span>HR Manager</span>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2">Get Started</h2>
+                <h3 class="subtitle is-5 is-muted">Choose one of our plans</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="pricing-wrap">
+                <div class="feature-card is-pricing has-text-centered">
+                    <h3 class="plan-name">Starter</h3>
+                    <img src="/static/assets/img/illustrations/pricing/1.svg" alt=""/>
+                    <div class="price">
+                        0
+                    </div>
+                    <p>Sign up, get some awesome features and get started now</p>
+                    <a class="button is-fullwidth is-bold">Get Started</a>
+                </div>
+                <div class="feature-card is-pricing has-text-centered">
+                    <h3 class="plan-name">Pro</h3>
+                    <img src="/static/assets/img/illustrations/pricing/2.svg" alt=""/>
+                    <div class="price">
+                        15
+                    </div>
+                    <p>Sign up, get some awesome features and get started now</p>
+                    <a class="button is-fullwidth primary-btn raised is-bold">Get Started</a>
+                </div>
+                <div class="feature-card is-pricing has-text-centered">
+                    <h3 class="plan-name">Business</h3>
+                    <img src="/static/assets/img/illustrations/pricing/3.svg" alt=""/>
+                    <div class="price">
+                        30
+                    </div>
+                    <p>Sign up, get some awesome features and get started now</p>
+                    <a class="button is-fullwidth is-bold">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section section-light-grey is-medium">
+        <div class="container">
+            <div class="title-wrapper has-text-centered">
+                <h2 class="title is-2 is-spaced">Drop us a line or two </h2>
+                <h3 class="subtitle is-5 is-muted">We'd love to hear from You</h3>
+                <div class="divider is-centered"></div>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
+                        <form>
+                            <div class="columns is-multiline">
+                                <div class="column is-6">
+                                    <input class="input is-medium" type="text" placeholder="First Name *">
+                                </div>
+                                <div class="column is-6">
+                                    <input class="input is-medium" type="text" placeholder="Last Name *">
+                                </div>
+                                <div class="column is-6">
+                                    <input class="input is-medium" type="text" placeholder="Email *">
+                                </div>
+                                <div class="column is-6">
+                                    <input class="input is-medium" type="email" placeholder="Company">
+                                </div>
+                                <div class="column is-12">
+                                    <textarea class="textarea" rows="6" placeholder=""></textarea>
+                                </div>
+                                <div class="column is-12">
+                                    <div class="form-footer has-text-right mt-10">
+                                        <button class="button cta is-large primary-btn form-button raised is-clear">Send Message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

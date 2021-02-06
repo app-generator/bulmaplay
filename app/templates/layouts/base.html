@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>
+        BulmaCSS Play - {% block title %}{% endblock %} | AppSeed
+    </title>
+
+    <meta name="description" content="Open-Source one page starter styled with Bulma designed by CssNinja.">
+
+    <link rel="icon" type="image/png" href="/static/assets/img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/assets/css/app.css">
+    <link rel="stylesheet" href="/static/assets/css/main.css">
+
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body>
+
+    <div id="pageloader" class="pageloader"></div>
+    <div id="infraloader" class="infraloader is-active"></div>    
+    
+    {% block content %}{% endblock content %}
+    
+    {% include 'includes/component-modal.html' %}
+    
+    {% include 'includes/footer.html' %}
+
+    {% include 'includes/component-totop.html' %}
+
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="/static/assets/js/bundle.js"></script>
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>
