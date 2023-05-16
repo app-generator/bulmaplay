@@ -1,24 +1,18 @@
-# [Jinja Template](https://appseed.us/jinja-template) BulmaPlay
+# [Flask/Jinja Template](https://appseed.us/apps/flask/) BulmaPlay
 
-> Seed project coded in Flask/Jinja on top of Bulma Fresh (free version) - Features:
+Seed project coded in Flask/Jinja on top of Bulma Fresh (free version), a colorful one-page design styled with Bulma CSS.
+
+- 👉 [LIVE Demo](https://bulmaplay.appseed-srv1.com/) - starter in action
+- 👉 More [Jinja/Flask Templates](https://appseed.us/apps/flask/) - free and PRO
 
 <br />
 
 > Features:
 
-- UI Kit: **Bulma Fresh** (Free Version) by **CssNinja**
-- Render Engine: Flask / [Jinja2](https://jinja.palletsprojects.com/)
-- Deployment scripts: Docker, Gunicorn/Nginx, HEROKU
-- Support via **Github** (issues tracker) and [Discord](https://discord.gg/fZC6hup).
-
-<br />
-
-> Links
-
-- [LIVE Demo](https://bulmaplay.appseed-srv1.com/) - starter in action
-- More [Jinja Templates](https://appseed.us/jinja-template) provided by AppSeed
-
-<br />
+- ✅ UI Kit: **Bulma Fresh** (Free Version) by **CssNinja**
+- ✅ Render Engine: Flask / [Jinja2](https://jinja.palletsprojects.com/)
+- ✅ Deployment scripts: Docker, Gunicorn/Nginx, HEROKU
+- ✅ Support via **Github** (issues tracker) and [Discord](https://discord.gg/fZC6hup).
 
 ![Jinja Template - Starter provided by AppSeed.](https://raw.githubusercontent.com/app-generator/bulmaplay/master/media/bulmaplay-screen.png)
 
